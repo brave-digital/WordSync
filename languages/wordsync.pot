@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bravewpsync 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-23 15:38+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: admin/class-wordsync-admin.php:107
+msgid "WordSync Options"
+msgstr ""
+
+#: admin/class-wordsync-admin.php:109
+msgid "Remote Url"
+msgstr ""
+
+#: admin/class-wordsync-admin.php:110
+msgid "Secret Key"
+msgstr ""
+
+#: admin/class-wordsync-admin.php:111
+msgid "Push Enabled"
+msgstr ""
+
+#: admin/class-wordsync-admin.php:111
+msgid ""
+"Allow remote servers access to this Wordpress install's data? (Read "
+"Permission)"
+msgstr ""
+
+#: admin/class-wordsync-admin.php:112
+msgid "Sync Enabled"
+msgstr ""
+
+#: admin/class-wordsync-admin.php:112
+msgid ""
+"Allow WP Sync to make changes to this Wordpress install? (Write Permission)"
+msgstr ""
+
+#: admin/class-wordsync-admin.php:162
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: admin/class-wordsync-admin.php:201
+msgid "Invalid Remote URL or no data was selected to be synced."
+msgstr ""
+
+#: admin/class-wordsync-admin.php:243
+msgid "Job deleted successfully."
+msgstr ""
+
+#: admin/class-wordsync-admin.php:243
+msgid "Job deleted unsuccessfully."
+msgstr ""
+
+#: admin/partials/mainpage.php:27
+msgid "Settings"
+msgstr ""
+
+#: admin/partials/mainpage.php:41
+msgid ""
+"Remote Install URL: <small>(This is the url of the homepage of your site)</"
+"small>"
+msgstr ""
+
+#: admin/partials/mainpage.php:41
+msgid "Enter the URL of your remote Wordpress Install"
+msgstr ""
+
+#: admin/partials/mainpage.php:43
+msgid "Select which data you'd like to syncronise between the sites:"
+msgstr ""
+
+#: admin/partials/mainpage.php:57
+msgid "Include this data in the sync"
+msgstr ""
+
+#: admin/partials/mainpage.php:67
+msgid "Depends on:"
+msgstr ""
+
+#: admin/partials/mainpage.php:69
+msgid "Status"
+msgstr ""
+
+#: admin/partials/mainpage.php:75
+msgid ""
+"Click Sync to start the synchronisation process. You will be able to review "
+"all the data which differs between the two sites and choose how to sync them."
+msgstr ""
+
+#: admin/partials/mainpage.php:76
+msgid "Sync"
+msgstr ""
+
+#: admin/partials/mainpage.php:77 admin/partials/mainpage.php:103
+msgid "Proceed"
+msgstr ""
+
+#: admin/partials/mainpage.php:78
+msgid "Cancel Sync"
+msgstr ""
+
+#: admin/partials/mainpage.php:95
+msgid "Changes:"
+msgstr ""
+
+#: admin/partials/mainpage.php:96
+msgid ""
+"Select which changes you'd like to make to <b>this Wordpress install</b>. "
+"The remote install is not affected."
+msgstr ""
+
+#: admin/partials/mainpage.php:102
+msgid ""
+"Check the changes you'd like to apply and then click the Proceed button."
+msgstr ""
+
+#: admin/partials/settingspage.php:21
+msgid "Settings Saved"
+msgstr ""
+
+#: admin/partials/settingspage.php:32
+msgid "Back"
+msgstr ""
+
+#: admin/partials/settingspage.php:46
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-wordsync.php:151
+msgid "Error reading log file. "
+msgstr ""
+
+#: node_modules/grunt-pot/test/fixtures/some-file.php:3
+msgid "I'm a translatable string."
+msgstr ""
+
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:4
+msgid "Me too"
+msgstr ""
+
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:7
+#, php-format
+msgid "I have %d apple"
+msgid_plural "I have %d apples"
+msgstr[0] ""
+msgstr[1] ""
+
+#. / TRANSLATORS: This should be translated as a shorthand for YEAR-MONTH-DAY using 4, 2 and 2 digits.
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:16
+msgid "yyyy-mm-dd"
+msgstr ""
