@@ -39,7 +39,7 @@
 			?>
 			<div class="stuffbox warningbox">
 				<div class="inside">
-					<p><strong>WARNING:</strong> This plugin modifies your site content and is still in ALPHA. It may not always perform adequitely and it would be **strongly advisable** to backup your site before using WordSync. <br/>WordSync does not offer a rollback option once your data has been synced. Brave Digital does not accept any responsibility for lost or corrupted data. USE THIS PLUGIN AT YOUR OWN RISK.</p>
+					<p><strong>WARNING:</strong> This plugin modifies your site content and is still in ALPHA. It may not always perform adequately and it would be **strongly advisable** to backup your site before using WordSync. <br/>WordSync does not offer a rollback option once your data has been synced. Brave Digital does not accept any responsibility for lost or corrupted data. USE THIS PLUGIN AT YOUR OWN RISK.</p>
 				</div>
 			</div>
 

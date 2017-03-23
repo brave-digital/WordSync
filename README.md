@@ -1,4 +1,4 @@
-=== WordSync ===
+# WordSync
 Contributors: bravedigital
 Tags: migration, sync, synchronise, backup, merge
 Requires at least: 4.3
@@ -7,11 +7,11 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WordSync allows you to synchronise posts, pages, users, taxonomies, attachments and settings between two WordPress installs.
-After setting up the link between the two sites using a secret key, you can perform a sync on the target site which will show all changes needed to bring it's content in sync with the source site.
-You can select which of these changes you'd like to synchronise across.
+> WordSync allows you to synchronise posts, pages, users, taxonomies, attachments and settings between two WordPress installs.
+> After setting up the link between the two sites using a secret key, you can perform a sync on the target site which will show all changes needed to bring it's content in sync with the source site.
+> You can select which of these changes you'd like to synchronise across.
 
-== Description ==
+## Description
 
 WordSync provides modular synchronisers which act on certain bits of data on your site:
 
@@ -27,10 +27,10 @@ For now WordSync transmits site data between the sites in an unencrypted stream.
 
 WordSync is designed to be used by developers and other super-users who work with WordPress sites. The plugin will expose a bit of the inner workings of WordPress to you and requires your judgement to know which data should be synced without overwriting data you'd like to keep.
 
-= ** Warning ** =
-This plugin modifies your site content and is still in ALPHA. It may not always perform adequitely and it would be **strongly advisable** to backup your site before using WordSync. WordSync does not offer a rollback option once your data has been synced. Brave Digital does not accept any responsibility for lost or corrupted data. USE THIS PLUGIN AT YOUR OWN RISK.
+## ** Warning **
+This plugin modifies your site content and is still in ALPHA. It may not always perform adequately and it would be **strongly advisable** to backup your site before using WordSync. WordSync does not offer a rollback option once your data has been synced. Brave Digital does not accept any responsibility for lost or corrupted data. USE THIS PLUGIN AT YOUR OWN RISK.
 
-== Installation ==
+## Installation
 
 The plugin is required to be installed and activated on *both* the source and target sites.
 
@@ -42,21 +42,21 @@ You will need to go into the WordSync Settings on each site (by clicking the 'Se
 
 On the target site you will need to enable Syncing (Write Permission) and on the source site you will need to enable Pushing (Read Permission).
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions
 
-= How are the different site URLs handled? =
+### How are the different site URLs handled?
 
 As the sync process occurs, the source data is run through conversion filters which replace all instances of the source site's URL with the target site's URL.
 
-= WordSync doesnt sync my data correctly! =
+### WordSync doesnt sync my data correctly!
 
-WordSync is still in BETA and as such we still need to iron out all different syncing scenarios. Also it is impossible to test all eventuallities. If you find a bug, please open a support ticket on our GitHub page or even better, submit a pull-request which fixes the issue to our GitHub repo.
+WordSync is still in ALPHA and as such we still need to iron out all different syncing scenarios. Also it is impossible to test all eventuallities. If you find a bug, please open a support ticket on our GitHub page or even better, submit a pull-request which fixes the issue to our GitHub repo.
 
-= Do both sites need to be online for syncing to work? =
+### Do both sites need to be online for syncing to work?
 
 No, but the source site needs to be accessible from the internet. So you can sync your localhost with a source site on the internet, but a site on the internet would not be able to sync with your localhost unless you set up your home internet to allow public connections to your localhost server.
 
-== Changelog ==
+### Changelog
 
-= 0.1 =
+#### 0.1
 * Inital release
