@@ -1,13 +1,6 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
  * @link              http://bravedigital.com
  * @since             0.1.0
  * @package           BraveWpsync
@@ -25,16 +18,16 @@
  * Domain Path:       /languages
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 if (!is_admin()) //Only load the plugin when in the admin area.
 {
 	return;
 }
 
-
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
 
 /**
  * The code that runs during plugin activation.

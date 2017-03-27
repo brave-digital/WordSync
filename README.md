@@ -1,15 +1,17 @@
 # WordSync
-Contributors: bravedigital
-Tags: migration, sync, synchronise, backup, merge
-Requires at least: 4.3
-Tested up to: 4.7.3
-Stable tag: 4.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+- Contributors: bravedigital
+- Tags: migration, sync, synchronise, backup, merge
+- Requires at least: 4.0
+- Tested up to: 4.7.3
+- Stable tag: 0.1
+- License: GPLv2 or later
+- License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 > WordSync allows you to synchronise posts, pages, users, taxonomies, attachments and settings between two WordPress installs.
 > After setting up the link between the two sites using a secret key, you can perform a sync on the target site which will show all changes needed to bring it's content in sync with the source site.
 > You can select which of these changes you'd like to synchronise across.
+
+
 
 ## Description
 

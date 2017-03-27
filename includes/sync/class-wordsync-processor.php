@@ -3,6 +3,9 @@
 	/**
 	 * class-wordsync-processor.php
 	 *
+	 * The WordSync Processor class handles the reading of local data, comparing of data and the final updating of the local data for a specific type of data.
+	 * This class is virtual and should not be used directly. It must be sub-classed.
+	 *
 	 * Date: 2016/12/09
 	 * Time: 10:36 AM
 	 */

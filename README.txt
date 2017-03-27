@@ -1,21 +1,20 @@
 === WordSync ===
 Contributors: bravedigital
 Tags: migration, sync, synchronise, backup, merge
-Requires at least: 4.3
+Requires at least: 4.0
 Tested up to: 4.7.3
-Stable tag: 4.3
+Stable tag: 0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+WordSync allows you to synchronise posts, pages, users, taxonomies, attachments and settings between two WordPress installs.
+
+== Description ==
 
 WordSync allows you to synchronise posts, pages, users, taxonomies, attachments and settings between two WordPress installs.
 After setting up the link between the two sites using a secret key, you can perform a sync on the target site which will show all changes needed to bring it's content in sync with the source site.
 You can select which of these changes you'd like to synchronise across before the sync is performed.
 WordSync will handle updating site urls automatically, download attachments and maps users, posts and attachments from one site to the other without conflicts.
-
-Warning:
-This plugin modifies your site content and is still in ALPHA. It may not always perform adequately and it would be **strongly advisable** to backup your site before using WordSync. WordSync does not offer a rollback option once your data has been synced. Brave Digital does not accept any responsibility for lost or corrupted data. USE THIS PLUGIN AT YOUR OWN RISK.
-
-== Description ==
 
 WordSync provides modular synchronisers which act on certain bits of data on your site:
 
@@ -25,7 +24,7 @@ WordSync provides modular synchronisers which act on certain bits of data on you
 *   Taxonomies - Synchronises all taxonomy terms, but both sites need to have the same taxonomies defined. Ie. if the theme defines custom taxonomies, both sites must have the same theme active.
 *   Attachments - Synchronises attachments. Attachment images are downloaded directly from the source site and then inserted into the media library and linked up to the same posts as in the source site.
 
-You can choose which of these to activate before performing a sync but some rely on others to run first before they themselves are able to run. For example, in order to synchronise posts, the users first need to be synchronised so that post authors can be determined.
+You can choose which of these to activate before performing a sync but some rely on others to run first before they themselves are able to run.
 
 For now WordSync transmits site data between the sites in an unencrypted stream. While evesdropping is extremely unlikely, bear this in mind if you have sensitive data.
 
@@ -33,6 +32,13 @@ WordSync is designed to be used by developers and other super-users who work wit
 
 = ** Warning ** =
 This plugin modifies your site content and is still in ALPHA. It may not always perform adequately and it would be **strongly advisable** to backup your site before using WordSync. WordSync does not offer a rollback option once your data has been synced. Brave Digital does not accept any responsibility for lost or corrupted data. USE THIS PLUGIN AT YOUR OWN RISK.
+
+= Contribute on GitHub =
+
+Help us make improvements and addtions by contributing on the WordSync GitHub project:
+
+https://github.com/brave-digital/WordSync
+
 
 == Installation ==
 

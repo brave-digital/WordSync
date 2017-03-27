@@ -3,6 +3,8 @@
 	/**
 	 * class-wordsync-job.php
 	 *
+	 * The Wordsync Job class stores the status and information about a specific sync job.
+	 *
 	 * Date: 2017/01/17
 	 * Time: 02:09 PM
 	 */
@@ -107,7 +109,7 @@
 		}
 
 		/**
-		 * Compiles and lists all the changes to this job's processors. Easily formatted for json consuption.
+		 * Compiles and lists all the changes to this job's processors. Easily formatted for json consumption.
 		 *
 		 * @return array
 		 */
