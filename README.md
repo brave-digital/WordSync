@@ -11,7 +11,7 @@
 > After setting up the link between the two sites using a secret key, you can perform a sync on the target site which will show all changes needed to bring it's content in sync with the source site.
 > You can select which of these changes you'd like to synchronise across.
 
-
+View the plugin on Wordpress.org here: https://wordpress.org/plugins/wordsync/
 
 ## Description
 

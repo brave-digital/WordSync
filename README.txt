@@ -26,16 +26,16 @@ WordSync provides modular synchronisers which act on certain bits of data on you
 
 You can choose which of these to activate before performing a sync but some rely on others to run first before they themselves are able to run.
 
-For now WordSync transmits site data between the sites in an unencrypted stream. While evesdropping is extremely unlikely, bear this in mind if you have sensitive data.
+For now WordSync transmits site data between the sites in an unencrypted stream. While eavesdropping is extremely unlikely, bear this in mind if you have sensitive data.
 
 WordSync is designed to be used by developers and other super-users who work with WordPress sites. The plugin will expose a bit of the inner workings of WordPress to you and requires your judgement to know which data should be synced without overwriting data you'd like to keep.
 
-= ** Warning ** =
-This plugin modifies your site content and is still in ALPHA. It may not always perform adequately and it would be **strongly advisable** to backup your site before using WordSync. WordSync does not offer a rollback option once your data has been synced. Brave Digital does not accept any responsibility for lost or corrupted data. USE THIS PLUGIN AT YOUR OWN RISK.
+== ** Warning ** ==
+This plugin modifies your site content and is still in alpha. It may not always perform adequately and it would be **strongly advisable** to backup your site before using WordSync. WordSync does not offer a rollback option once your data has been synced. Brave Digital does not accept any responsibility for lost or corrupted data. USE THIS PLUGIN AT YOUR OWN RISK.
 
-= Contribute on GitHub =
+== Contribute on GitHub ==
 
-Help us make improvements and addtions by contributing on the WordSync GitHub project:
+Help us make improvements and additions by contributing on the WordSync GitHub project:
 
 https://github.com/brave-digital/WordSync
 
@@ -58,15 +58,19 @@ On the target site you will need to enable Syncing (Write Permission) and on the
 
 As the sync process occurs, the source data is run through conversion filters which replace all instances of the source site's URL with the target site's URL.
 
-= WordSync doesnt sync my data correctly! =
+= WordSync doesn't sync my data correctly! =
 
-WordSync is still in ALPHA and as such we still need to iron out all different syncing scenarios. Also it is impossible to test all eventuallities. If you find a bug, please open a support ticket on our GitHub page or even better, submit a pull-request which fixes the issue to our GitHub repo.
+WordSync is still in ALPHA and as such we still need to iron out all the different syncing scenarios and it is impossible to be able to test all eventualities. If you find a bug, please open a support ticket on our GitHub page or even better, submit a pull-request which fixes the issue to our GitHub repo.
 
 = Do both sites need to be online for syncing to work? =
 
 No, but the source site needs to be accessible from the internet. So you can sync your localhost with a source site on the internet, but a site on the internet would not be able to sync with your localhost unless you set up your home internet to allow public connections to your localhost server.
 
+== Screenshots ==
+1. The main WordSync interface showing the choice of processors available.
+2. The review stage of a sync job in progress.
+
 == Changelog ==
 
 = 0.1 =
-* Inital release
+* Initial release
