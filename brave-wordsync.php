@@ -9,7 +9,7 @@
  * Plugin Name:       WordSync
  * Plugin URI:        http://bravedigital.com/wordsync
  * Description:       Migrate posts, pages, settings between Wordpress installs.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Author:            Brave Digital
  * Author URI:        http://bravedigital.com
  * License:           GPL-2.0+

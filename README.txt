@@ -78,5 +78,5 @@ No, but the source site needs to be accessible from the internet. So you can syn
 * Added settings postprocessing and excluded some settings which were harmful to migrate.
 * Changed admin screen to use POST instead of GET to avoid URI too long messages.
 
-= 0.1.0 =
+= 0.1 =
 * Initial release
