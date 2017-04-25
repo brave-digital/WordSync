@@ -3,7 +3,7 @@
 - Tags: migration, sync, synchronise, backup, merge
 - Requires at least: 4.0
 - Tested up to: 4.7.3
-- Stable tag: 0.1
+- Stable tag: 0.1.1
 - License: GPLv2 or later
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,12 @@ WordSync is still in ALPHA and as such we still need to iron out all different s
 No, but the source site needs to be accessible from the internet. So you can sync your localhost with a source site on the internet, but a site on the internet would not be able to sync with your localhost unless you set up your home internet to allow public connections to your localhost server.
 
 ### Changelog
+
+#### 0.1.1
+* User processor now handles user roles correctly.
+* User processor now based on user_logins and not user_emails as logins are not changable after creation.
+* Added settings postprocessing and excluded some settings which were harmful to migrate.
+* Changed admin screen to use POST instead of GET to avoid URI too long messages.
 
 #### 0.1
 * Inital release

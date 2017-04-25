@@ -71,9 +71,11 @@
 								</h3>
 								<p><?php echo $proc['desc']; ?></p>
 
-								<?php if (count($preprocs) > 0): ?>
+								<?php if (count($preprocs) > 0) { ?>
 								<p class="preprocessors"><?php _e('Depends on:', 'wordsync');?> <?php echo implode(',',$preprocs); ?></p>
-								<?php endif; ?>
+								<?php } else { ?>
+								<p class="preprocessors">&nbsp;</p>
+								<?php } ?>
 								<p class="status"></p>
 
 							</a>

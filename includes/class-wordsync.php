@@ -45,7 +45,7 @@ class BraveWordsync {
 	public function __construct() {
 
 		$this->plugin_name = 'wordsync';
-		$this->version = '0.1.0';
+		$this->version = '0.1.1';
 
 		$this->loadDependencies();
 
@@ -168,6 +168,9 @@ class BraveWordsync {
 	 */
 	public function makeResult($success, $msg = '', $args = array())
 	{
+
+		if (is_wp_error($msg)) $msg = $msg->get_error_message();
+
 		return array_merge( array('success'=>$success, 'msg'=>$msg), $args);
 	}
 

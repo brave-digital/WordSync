@@ -45,7 +45,18 @@
 			                      'upload_path', 'upload_url_path', 'auto_updater.lock',
 			                      'recently_edited',
 			                      'uninstall_plugins',
-			                      'wordfence_version'
+			                      'wordfence_version',
+			                      'theme_switched',
+			                      'theme_switched_via_customizer',
+
+			                      $wpdb->prefix.'user_roles', //Unable to transform keys from the old install to the new yet. TODO: Add Preprocessing ability to change keys, not just values.
+
+			                      'page_for_posts', //Unable to do these for now since they would require the Users processor to run first and thats a hassle.
+			                      'page_on_front',
+
+			                      'category_children', //Not sure what this is but doesnt seem to be
+
+
 			                      );
 
 			foreach ($rawdata as $option)
@@ -87,7 +98,14 @@
 		protected function performCreateAction($change)
 		{
 			$di = $change->remotedataitem;
-			$success = add_option($di->getField('n'), $di->getField('v'), '', $di->getField('al'));
+			$setting = $di->getField('n');
+			$value = $di->getField('v');
+			$success = add_option($setting, $value, $di->getField('al'));
+
+			if ($success)
+			{
+				$this->afterSettingsChange($setting, $value);
+			}
 
 			return $this->wordsync->makeResult($success, 'Setting Created');
 		}
@@ -95,10 +113,31 @@
 		protected function performUpdateAction($change)
 		{
 			$di = $change->remotedataitem;
-			$success = update_option($di->getField('n'), $di->getField('v'), $di->getField('al'));
+			$setting = $di->getField('n');
+			$value = $di->getField('v');
+			$success = update_option($setting, $value, $di->getField('al'));
+
+			if ($success)
+			{
+				$this->afterSettingsChange($setting, $value);
+			}
 
 			return $this->wordsync->makeResult($success, 'Setting Updated');
 
+		}
+
+		/**
+		 * Performs any Setting-specific actions that need to happen when a certain setting changes.
+		 *
+		 * @param $setting
+		 * @param $value
+		 */
+		private function afterSettingsChange($setting, $value)
+		{
+			if ($setting == 'permalink_structure')
+			{
+				flush_rewrite_rules();
+			}
 		}
 
 		protected function performRemoveAction($change)

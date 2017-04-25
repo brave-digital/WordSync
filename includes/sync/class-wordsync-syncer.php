@@ -100,6 +100,8 @@
 
 		public function getInfo()
 		{
+			global $wpdb;
+
 			$processors = array();
 			foreach ($this->processors as $key=>$proc)
 			{
@@ -116,6 +118,7 @@
 				'siteurl' => get_option('siteurl'),
 				'homeurl' => get_option('home'),
 				'uploadsurl' => $uploads['baseurl'],
+				'dbprefix' => $wpdb->prefix,
 				'processors' => $processors
 			);
 
