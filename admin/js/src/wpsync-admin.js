@@ -57,12 +57,17 @@
 
 	function doAjax(command, data, onSuccess, onFail)
 	{
-		$.getJSON(ajaxurl, {
-				action: 'wordsync_admin',
-				command: command,
-				data: data
-			},
-			onSuccess)
+		$.ajax({
+				dataType: "json",
+				method: "POST",
+				url: ajaxurl,
+
+				data: {
+					action: 'wordsync_admin',
+					command: command,
+					data: data
+				},
+				success: onSuccess})
 			.fail(onFail);
 	}
 

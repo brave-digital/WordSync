@@ -1,4 +1,4 @@
-/*! bravewordsync 2017-03-23 */
+/*! bravewordsync 2017-04-25 */
 !function(a) {
     var b = !1;
     if ("function" == typeof define && define.amd && (define(a), b = !0), "object" == typeof exports && (module.exports = a(), 
@@ -114,11 +114,17 @@
         }
     }
     function d(b, c, d, e) {
-        a.getJSON(ajaxurl, {
-            action: "wordsync_admin",
-            command: b,
-            data: c
-        }, d).fail(e);
+        a.ajax({
+            dataType: "json",
+            method: "POST",
+            url: ajaxurl,
+            data: {
+                action: "wordsync_admin",
+                command: b,
+                data: c
+            },
+            success: d
+        }).fail(e);
     }
     function e() {
         d("getlog", {}, function(b) {

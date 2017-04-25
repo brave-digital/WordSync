@@ -13,8 +13,8 @@
 		protected $details = array('name'=>'Users', 'desc'=>'Syncs users. Newly created users will have to reset their passwords.', 'dashicon'=>'dashicons-admin-users');
 
 		protected $keyfield = 'user_login';
-		protected $matchfields = array('user_email', 'user_login');
-		protected $valuefields = array('user_login', 'user_email', 'display_name', 'user_nicename', 'user_url', 'user_status', 'meta', 'roles');
+		protected $matchfields = array('user_login');
+		protected $valuefields = array('user_email', 'display_name', 'user_nicename', 'user_url', 'user_status', 'meta', 'roles');
 		protected $mapfields = array('ID');
 		protected $namefield = 'display_name';
 		protected $preprocessors = array();
@@ -33,6 +33,24 @@
 
 			$data = array();
 
+			$prefix = $wpdb->prefix;
+
+			//Add any user metadata here which shouldnt be captured by WordSync. Pay attention to the "wp_" prefix which can be different on different installs.
+			$excludedmeta = array(
+				'last_activity',
+				'session_tokens',
+				'locale',
+				'_woocommerce_persistent_cart',
+				'last_update',
+				'dismissed_wp_pointers',
+				$prefix.'user-settings',
+				$prefix.'user-settings-time',
+				$prefix.'capabilities', //These settings will be handled by the roles field.
+				$prefix.'user_level',   //These settings will be handled by the roles field.
+				$prefix.'dashboard_quick_press_last_post_id',
+			);
+
+
 			foreach ($rawdata as $user)
 			{
 				/** @var WP_User $user */
@@ -48,16 +66,6 @@
 				    'meta'=>array(),
 				);
 
-				$excludedmeta = array(
-					'last_activity',
-					'session_tokens',
-					'locale',
-					'wp_user-settings-time',
-					'wp_dashboard_quick_press_last_post_id',
-					'_woocommerce_persistent_cart',
-					'last_update',
-					'dismissed_wp_pointers',
-					);
 
 				$meta = $this->sqlQuery($wpdb->usermeta, array('user_id'=>$user->ID), array('meta_key'=>$excludedmeta));
 				//$meta = $wpdb->get_results("SELECT * FROM ".$wpdb->usermeta." WHERE user_id = ".esc_sql($user->ID)." AND meta_key NOT IN (".implode(',', $excludedmeta).")", ARRAY_A);
@@ -83,36 +91,65 @@
 		{
 			$di = $change->remotedataitem;
 
-			$this->wordsync->log("User create action got the following change: ", $change->toJSON());
+			//$this->wordsync->log("User create action got the following change: ", $change->toJSON());
 
-			$thisdata = $di->getFields(array('meta', 'roles'));
+			$thisdata = $di->getFields(array('meta', 'roles', 'ID'));
 			$thismeta = $di->getField('meta');
+			$thisroles = $di->getField('roles');
 
-			//TODO: User Roles migration!
-			//$thisroles = $di->getField('roles');
-
+			if (is_array($thisroles)) $thisdata['role'] = $thisroles[0];
 			$res = wp_insert_user($thisdata);
 			$success = !is_wp_error($res);
 
 			if ($success)
 			{
 
-				//$res now holds the new user's id.
+				//$res now holds the new user's id. Store that into the updated data item and then set Res to a human readable output to return.
 				$thisdata['ID'] = $res;
+
+				$res = 'User Created';
+
 				$thisdata['meta'] = $thismeta;
-				//TODO: User Roles fill in.
-				$thisdata['roles'] = array();
+				$thisdata['roles'] = $thisroles;
 
-				//On success add this user back into the processor and link it with this remote data item so it's available to be a mapping.
-				$this->addNewLocalData($thisdata, $di);
-
-				foreach ($thismeta as $metakey=>$metavalue)
+				//Set the roles on the user:
+				$user = get_user_by("ID", $thisdata['ID']);
+				if ($user)
 				{
-					update_user_meta($res, $metakey, $metavalue);
+					$first = true;
+
+					foreach ($thisroles as $role)
+					{
+						if ($first)
+						{
+							$first = false;
+							//Do nothing here as this has already been done in wp_insert_user by passing in the 'role' field. Unfortunately it only does the first role and not any subsequent ones which this loop takes care of.
+							//$user->set_role($role);
+						}
+						else
+						{
+							$user->add_role($role);
+						}
+					}
+
+					//On success add this user back into the processor and link it with this remote data item so it's available to be a mapping.
+					$this->addNewLocalData($thisdata, $di);
+
+					foreach ($thismeta as $metakey=>$metavalue)
+					{
+						update_user_meta($thisdata['ID'], $metakey, $metavalue);
+					}
 				}
+				else
+				{
+					$success = false;
+					$res = "Unable to retrieve newly created user ID: ".$thisdata['ID'].".";
+				}
+
+
 			}
 
-			return $this->wordsync->makeResult($success, 'User Created');
+			return $this->wordsync->makeResult($success, $res);
 		}
 
 		protected function performUpdateAction($change)
@@ -126,7 +163,29 @@
 			{
 				if ($field == 'roles')
 				{
-					$this->wordsync->logError("WARNING! I dont know how to update user roles yet!", array('roles' =>$di->getField('roles')));
+					//$this->wordsync->logError("WARNING! I dont know how to update user roles yet!", array('roles' =>$di->getField('roles')));
+
+					$thisroles = $di->getField('roles');
+					//Set the roles on the user:
+					$user = get_user_by("ID", $id);
+					if ($user)
+					{
+						$first = true;
+
+						foreach ($thisroles as $role)
+						{
+							if ($first)
+							{
+								$first = false;
+								$user->set_role($role);
+							}
+							else
+							{
+								$user->add_role($role);
+							}
+						}
+					}
+
 				}
 				else if ($field == 'meta')
 				{
@@ -177,6 +236,13 @@
 			$success = wp_delete_user($di->getField('ID'));
 
 			return $this->wordsync->makeResult($success, 'User Deleted');
+		}
+
+
+		public function remotePreprocessor($field, $value, $type)
+		{
+
+			return $value;
 		}
 
 
