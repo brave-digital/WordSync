@@ -233,7 +233,14 @@
 		{
 			$di = $change->dataitem;
 
-			$success = wp_delete_user($di->getField('ID'));
+			$userid = $di->getField('ID');
+
+			if (get_current_user_id() == $userid)
+			{
+				return $this->wordsync->makeResult(false, 'Cannot delete yourself!');
+			}
+
+			$success = wp_delete_user($userid);
 
 			return $this->wordsync->makeResult($success, 'User Deleted');
 		}

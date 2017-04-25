@@ -590,26 +590,43 @@
 			$this->wordsync->log($this->slug . ": Performing Before Processing Routines...");
 			$this->beforeProcessing();
 
+			//Build a changelist sorted by change action type:
+			$changelist = array(BraveWordsync_Change::ACTION_CREATE=>array(),BraveWordsync_Change::ACTION_UPDATE=>array(),BraveWordsync_Change::ACTION_REMOVE=>array());
 			foreach ($this->changes as $change)
 			{
 				/** @var BraveWordsync_Change $change */
 				if (in_array($change->id, $selectedids))
 				{
+					$changelist[$change->action][] = $change;
+				}
+			}
 
-					//$this->wpsync->log("Performing Change: ", $change->toJSON());
+			//This array dictates the order in which the changes are processed.
+			//By default all updates should happen first then removals then creates. This is to ensure that all data is removed first before creating new data, in case the same email addresses / user ids / unique numbers are used.
+			$executionorder = array(
+				BraveWordsync_Change::ACTION_UPDATE,
+				BraveWordsync_Change::ACTION_REMOVE,
+				BraveWordsync_Change::ACTION_CREATE
+			);
+
+			//Execute the changes in $executionorder's order:
+			foreach ($executionorder as $changetype)
+			{
+				foreach ($changelist[$changetype] as $change)
+				{
 					switch ($change->action)
 					{
 						case BraveWordsync_Change::ACTION_CREATE:
 							$res = $this->performCreateAction($change);
-						break;
+							break;
 
 						case BraveWordsync_Change::ACTION_REMOVE:
 							$res = $this->performRemoveAction($change);
-						break;
+							break;
 
 						case BraveWordsync_Change::ACTION_UPDATE:
 							$res = $this->performUpdateAction($change);
-						break;
+							break;
 
 						default:
 							$res = $this->wordsync->makeResult(false, 'Unknown change action type!', $change);
@@ -617,7 +634,9 @@
 
 					if (!$this->wordsync->checkResult($res))
 					{
-						$this->wordsync->logError("Error while processor " . $this->slug . " trying to perform " . BraveWordsync_Change::actionToString($change->action) . " change " . $change->id . ".", array('change' =>$change, 'result' =>$res));
+						//An error occured. Print to log and output to screen.
+						$this->wordsync->logError("Error while performing ".$this->slug." " . BraveWordsync_Change::actionToString($change->action) . " change " . $change->id . ".", array('change' =>$change, 'result' =>$res));
+						$res['msg'] = $res['msg']."\n"." Error while performing ".$this->slug." ". BraveWordsync_Change::actionToString($change->action) . " change " . $change->id . ".";
 						return $res;
 					}
 					else
@@ -625,6 +644,7 @@
 						$this->wordsync->log("Processor " . $this->slug . " performed " . BraveWordsync_Change::actionToString($change->action) . " change " . $change->id . " successfully!");
 					}
 				}
+
 			}
 
 			$this->wordsync->log($this->slug . ": Performing After Processing Routines...");

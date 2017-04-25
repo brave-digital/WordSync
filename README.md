@@ -65,6 +65,9 @@ No, but the source site needs to be accessible from the internet. So you can syn
 * User processor now based on user_logins and not user_emails as logins are not changable after creation.
 * Added settings postprocessing and excluded some settings which were harmful to migrate.
 * Changed admin screen to use POST instead of GET to avoid URI too long messages.
+* Changes are now processed in type order (update then delete then create)
+* Added better error handling while processing changes.
+* Added Cannot delete the current user check.
 
 #### 0.1
 * Inital release

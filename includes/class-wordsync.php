@@ -100,25 +100,42 @@ class BraveWordsync {
 	 */
 	private function loadDependencies()
 	{
+		$basepath = plugin_dir_path(dirname( __FILE__ ));
 		//Plugin framework
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wordsync-loader.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wordsync-admin.php';
+		require_once $basepath . 'includes/class-wordsync-loader.php';
+		require_once $basepath . 'admin/class-wordsync-admin.php';
 
 		//Logging
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/logging/LoggerInterface.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/logging/AbstractLogger.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/logging/LogLevel.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/logging/logger.php';
+		if (!interface_exists("\\Psr\\Log\\LoggerInterface"))
+		{
+			require_once $basepath . 'includes/logging/LoggerInterface.php';
+		}
+
+		if (!class_exists("\\Psr\\Log\\AbstractLogger"))
+		{
+			require_once $basepath . 'includes/logging/AbstractLogger.php';
+		}
+
+		if (!class_exists("\\Psr\\Log\\LogLevel"))
+		{
+			require_once $basepath . 'includes/logging/LogLevel.php';
+		}
+
+		if (!class_exists("\\KLogger\\Logger"))
+		{
+			require_once $basepath . 'includes/logging/logger.php';
+		}
+
 
 		//Syncer
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/sync/class-wordsync-dataitem.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/sync/class-wordsync-change.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/sync/class-wordsync-processor.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/sync/class-wordsync-syncer.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/sync/class-wordsync-job.php';
+		require_once $basepath . 'includes/sync/class-wordsync-dataitem.php';
+		require_once $basepath . 'includes/sync/class-wordsync-change.php';
+		require_once $basepath . 'includes/sync/class-wordsync-processor.php';
+		require_once $basepath . 'includes/sync/class-wordsync-syncer.php';
+		require_once $basepath . 'includes/sync/class-wordsync-job.php';
 
 		//3rd party libraries
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/vendor/finediff.php';
+		require_once $basepath . 'includes/vendor/finediff.php';
 
 		$this->loader = new BraveWordsync_Loader();
 	}

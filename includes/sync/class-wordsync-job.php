@@ -496,7 +496,8 @@
 								$res = $processor->performChanges($proc['selects']);
 								if (!$this->wordsync->checkResult($res))
 								{
-									return $res;
+									$this->deleteJob();
+									return $this->makeJobJSONResult(false, $res['msg']);
 								}
 								else
 								{
